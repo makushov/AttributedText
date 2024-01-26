@@ -96,7 +96,7 @@ internal class HTML2TextParser {
 
     private func addChunkOfText(_ string: String) {
         guard !string.isEmpty else { return }
-        var textChunk = Text(string)
+        var textChunk = Text(string.trimmingCharacters(in: .whitespacesAndNewlines))
 
         for tag in tags {
             if let action = availableTags[tag] {
