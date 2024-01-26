@@ -90,13 +90,13 @@ internal class HTML2TextParser {
 
         endIndex = htmlString.endIndex
         if startIndex != endIndex {
-            addChunkOfText(String(htmlString[startIndex..<endIndex]))
+            addChunkOfText(String(htmlString[startIndex..<endIndex]).trimmingCharacters(in: .whitespacesAndNewlines))
         }
     }
 
     private func addChunkOfText(_ string: String) {
         guard !string.isEmpty else { return }
-        var textChunk = Text(string.trimmingCharacters(in: .whitespacesAndNewlines))
+        var textChunk = Text(string)
 
         for tag in tags {
             if let action = availableTags[tag] {
